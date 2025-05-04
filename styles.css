@@ -1,4 +1,3 @@
-/* Сброс отступов и базовые настройки */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +11,6 @@ body {
     min-height: 100vh;
 }
 
-/* Шапка */
 header.menu {
     width: 100%;
     background: #ffffff;
@@ -21,39 +19,36 @@ header.menu {
     align-items: center;
 }
 
-/* Контейнер внутри шапки, как у основного .container */
 header.menu > .container {
     width: 100%;
-    max-width: 1000px;    /* совпадает с max-width основного контейнера */
-    margin: 0 auto;       /* центрируем внутри header */
-    padding: 0 20px;      /* боковые отступы */
+    max-width: 1000px;    
+    margin: 0 auto;       
+    padding: 0 20px;      
     display: flex;
     align-items: center;
 }
 
-/* Меню (используем flex для распределения пунктов) */
+
 .header-menu {
     display: flex;
     width: 100%;
     list-style: none;
     align-items: center;
-    gap: 20px;            /* расстояние между пунктами */
+    gap: 20px;            
     padding: 0;
     margin: 0;
 }
 
-/* Первый пункт «распирает» блок вправо, а последний — влево */
+
 .main-btn {
     margin-right: auto;
 }
-
-
 
 .cart-btn {
     margin-left: auto;
 }
 
-/* Стили ссылок внутри пунктов меню */
+
 .header-menu a {
     display: inline-block;
     padding: 10px 15px;
@@ -69,7 +64,7 @@ header.menu > .container {
     color: #000;
 }
 
-/* Основной контейнер страниц */
+
 .container {
     display: flex;
     flex-direction: column;
@@ -79,7 +74,7 @@ header.menu > .container {
     padding: 0 20px 20px;
 }
 
-/* Блок лампочек и кнопка */
+
 .bulb-block {
     flex: 1;
     display: flex;
@@ -89,7 +84,7 @@ header.menu > .container {
     overflow-y: auto;
 }
 
-/* Сетка карточек ламп */
+
 .cards-container {
     display: grid;
     grid-template-columns: repeat(4, minmax(100px, 1fr));
@@ -100,7 +95,7 @@ header.menu > .container {
     flex: 1;
 }
 
-/* Карточка лампочки */
+
 .card {
     text-align: center;
 }
@@ -129,10 +124,6 @@ img {
     font-size: 12px;
 }
 
-/* .card-title {
-    font-size: 120%;
-    text-align: left;
-} */
 
 .card-title {
     text-decoration: none;
@@ -166,7 +157,7 @@ img {
 .main-btn a {
     display: inline-block;
     padding: 10px 15px;
-    font-size: 28px;  /* Увеличиваем размер шрифта */
+    font-size: 28px;  
     color: #000;
     text-decoration: none;
     border-radius: 5px;
@@ -180,9 +171,9 @@ img {
 
 .cart-btn button {
     color: #000;
-    border: 1px solid #000;  /* Увеличиваем толщину границы */
+    border: 1px solid #000; 
     border-radius: 8px;
-    padding: 12px 30px;  /* Увеличиваем отступы */
+    padding: 12px 30px; 
     margin-left: auto;
 }
 
@@ -190,7 +181,7 @@ img {
     display: inline-block;
     color: black;
     font-size: 20px;
-    padding: 12px 30px;  /* Увеличиваем отступы */
+    padding: 12px 30px;  
     text-decoration: none;
     border-radius: 8px;
     transition: background-color 0.3s, color 0.3s;
@@ -204,10 +195,10 @@ img {
 .cart-btn a {
     display: inline-block;
     color: black;
-    padding: 12px 30px;  /* Увеличиваем отступы */
+    padding: 12px 30px;  
     text-decoration: none;
     margin-left: 30px;
-    border: 1px solid black;  /* Увеличиваем толщину границы */
+    border: 1px solid black; 
     border-radius: 8px;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -257,7 +248,6 @@ img {
     color: #fff;
 }
 
-/* Кнопка «Показать все» */
 .show-more-btn {
     margin: 10px 0;
     padding: 8px 16px;
@@ -274,7 +264,6 @@ img {
     background-color: #f0f0f0;
 }
 
-/* Стили для страницы товара */
 .product-details {
     max-width: 800px;
     margin: 40px auto;
@@ -297,7 +286,7 @@ img {
 .product-details h1 {
     text-align: center;
     margin: 0 auto 16px;
-    font-size: 24px;   /* по вкусу */
+    font-size: 24px;   
     font-weight: 700;
 }
 
@@ -349,7 +338,6 @@ img {
     display: grid;
     grid-template-columns: auto auto;
     column-gap: 8px;
-    /* выравниваем элементы по центру по вертикали */
     align-items: center;
     width: 100%;
     margin-bottom: 20px;
@@ -360,11 +348,9 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Вот эта строка — растягиваем контейнер на всю ширину */
     width: 100%;
   }
   
-  /* Убираем любые смещения у заголовка */
   .product-title {
     margin: 8px 0 16px;
 
@@ -375,7 +361,6 @@ img {
     align-items: center;
     gap: 10px;
     position: relative;
-    /* top: -6px; */
   }
 
 .quantity-input::-webkit-outer-spin-button,
@@ -394,13 +379,12 @@ img {
     padding: 0;
 }
 
-/* Центрируем содержимое на странице оформления */
 .placing-order {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 40px 20px;  /* по вкусу */
+    padding: 40px 20px; 
 }
   
 .placing-order h1 {
@@ -408,29 +392,25 @@ img {
     margin-bottom: 20px;
 }
   
-  /* Стили для формы */
 #orderForm {
     width: 60%;
-    /* max-width: 480px; */
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
   
-  /* Группы полей */
 #orderForm .form-group {
     display: flex;
     flex-direction: column;
     text-align: left;
 }
   
-  /* Метки полей */
   #orderForm label {
     font-weight: 600;
     margin-bottom: 6px;
   }
   
-  /* Поля ввода */
+
 #orderForm input,
 #orderForm textarea {
     padding: 8px;
@@ -438,12 +418,12 @@ img {
     border-radius: 4px;
 }
   
-  /* Увеличенное поле адреса */
+
 #orderForm #address {
     min-height: 80px;
 }
   
-  /* Итоговая сумма */
+
 #orderForm .total-group {
     font-size: 18px;
     font-weight: bold;
@@ -451,7 +431,7 @@ img {
     margin-top: 12px;
 }
   
-  /* Кнопка отправить */
+
 #orderForm .submit-btn {
     padding: 12px;
     font-size: 18px;
@@ -486,7 +466,7 @@ img {
 }
 
 .order-btn {
-    margin-left: 15px; /* сдвиг на 15px вправо */
+    margin-left: 15px; 
     padding: 6px 12px;
     background-color: #ffffff;
     color: rgb(0, 0, 0);
@@ -515,7 +495,6 @@ img {
     background-color: #a71d2a;
 }
 
-/* Замените существующие стили для формы */
 #orderForm .form-group {
     display: grid;
     grid-template-columns: 150px 1fr;
@@ -530,7 +509,6 @@ img {
     padding-right: 10px;
 }
 
-/* Для textarea убираем растягивание на всю ширину */
 #orderForm textarea {
     grid-column: 2 / 3;
     resize: vertical;
@@ -544,7 +522,6 @@ img {
     margin-top: 20px;   
 }
 
-/* Адаптивность для мобильных */
 @media (max-width: 768px) {
     #orderForm .form-group {
         grid-template-columns: 1fr;
@@ -561,9 +538,9 @@ img {
     }
 }
 
-/* Для итоговой суммы */
+
 .total-group {
-    grid-column: 1 / -1; /* Растягиваем на всю ширину сетки */
+    grid-column: 1 / -1; 
     text-align: center;
     margin: 20px 0;
     width: 100%;
@@ -670,7 +647,6 @@ body {
 }
 
 
-/* Адаптивность для кнопки */
 @media (max-width: 768px) {
     .submit-btn {
         width: 60%;
@@ -684,7 +660,6 @@ body {
 }
 
 
-/* Адаптив для узких экранов */
 @media (max-width: 600px) {
     .cards-container {
         grid-template-columns: repeat(2, 1fr);
@@ -705,25 +680,21 @@ body {
 }
 
 @media (max-width: 360px) {
-    /* Уменьшаем боковые паддинги контейнера в шапке */
     header.menu > .container {
       padding: 0 8px;
     }
   
-    /* Позволяем пунктам меню переноситься, если не влазят в одну строку */
     .header-menu {
       flex-wrap: wrap;
       gap: 8px;
-      justify-content: space-between; /* равномерно распределим */
+      justify-content: space-between; 
     }
   
-    /* Уменьшаем внутренние отступы ссылок, чтобы они помещались */
     .header-menu a {
       padding: 6px 10px;
       font-size: 14px;
     }
   
-    /* Опционально: можно чуть сузить кнопку “Главная” и “Корзина” */
     .main-btn a,
     .cart-btn a {
       padding-left: 8px;
@@ -733,15 +704,10 @@ body {
 
   @media (max-width: 360px) {
     .res-submit-btn {
-      /* Сделать ширину автоматической, чтобы подстраивалась под содержимое */
       width: auto;
-      /* Уменьшить внутренние отступы */
       padding: 6px 12px;
-      /* Понизить размер шрифта, чтобы текст точно поместился */
       font-size: 12px;
-      /* Позволить перенос слов внутри кнопки */
       white-space: normal;
-      /* Центрировать текст */
       text-align: center;
     }
   }

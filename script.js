@@ -1,18 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Ключ в localStorage для хранения количества в корзине
     const CART_KEY = 'cartCounts';
 
-    // Загрузить текущее состояние корзины из localStorage
     function loadCart() {
         return JSON.parse(localStorage.getItem(CART_KEY) || '{}');
     }
 
-    // Сохранить обновлённую корзину в localStorage
     function saveCart(cart) {
         localStorage.setItem(CART_KEY, JSON.stringify(cart));
     }
 
-    // Мокаем данные товаров
     const products = [];
     for (let i = 1; i <= 28; i++) {
         products.push({
@@ -24,15 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
             wattage: [5, 7, 10, 15][Math.floor(Math.random() * 4)]
         });
     }
-    // (Не обязательно сохранять продукты в localStorage, если не используешь где-то ещё)
-    // localStorage.setItem('products', JSON.stringify(products));
 
-    // ----- Рендер главной страницы -----
     if (document.getElementById('cardsContainer')) {
         const container = document.getElementById('cardsContainer');
         const showMoreBtn = document.getElementById('showMoreBtn');
 
-        // Создаёт input для количества, подставляя сохранённое значение
+
         function createCountInput(productId) {
             const cart = loadCart();
             const input = document.createElement('input');
@@ -47,12 +40,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return input;
         }
 
-        // Создаёт одну карточку товара
         function createCard(product) {
             const card = document.createElement('div');
             card.className = 'card';
 
-            // Изображение-ссылка
             const imgLink = document.createElement('a');
             imgLink.href = `card.html?id=${product.id}`;
             const img = document.createElement('img');
@@ -60,17 +51,15 @@ document.addEventListener('DOMContentLoaded', function() {
             img.alt = product.name;
             imgLink.appendChild(img);
 
-            // Нижняя часть
             const bottom = document.createElement('div');
             bottom.className = 'card-bottom';
 
-            // Название-ссылка
             const titleLink = document.createElement('a');
             titleLink.href = `card.html?id=${product.id}`;
             titleLink.className = 'card-title';
             titleLink.textContent = product.name;
 
-            // Блок управления количеством
+
             const btnGroup = document.createElement('div');
             btnGroup.className = 'btn-group';
             const minusBtn = document.createElement('button');
@@ -81,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             plusBtn.className = 'control-btn';
             plusBtn.textContent = '+';
 
-            // При + увеличиваем и сохраняем
+
             plusBtn.addEventListener('click', () => {
                 let value = parseInt(input.value) || 0;
                 value++;
@@ -91,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 saveCart(cart);
             });
 
-            // При – уменьшаем и сохраняем (или удаляем из корзины)
+
             minusBtn.addEventListener('click', () => {
                 let value = parseInt(input.value) || 0;
                 value = Math.max(0, value - 1);
@@ -109,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return card;
         }
 
-        // Рендерит первые N карточек
+
         function renderCards(count) {
             container.innerHTML = '';
             products.slice(0, count).forEach(p => {
@@ -117,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Инициализация главной страницы
         renderCards(16);
         if (products.length <= 16) {
             showMoreBtn.style.display = 'none';
@@ -128,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ----- Рендер страницы товара (card.html) -----
+
     else if (document.getElementById('productDetails')) {
         const params = new URLSearchParams(window.location.search);
         const productId = parseInt(params.get('id'));
@@ -171,11 +159,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
 
             const qtyInput     = container.querySelector('.quantity-input');
-            const plusBtn      = container.querySelector('.minus').nextElementSibling.nextElementSibling; // или querySelector('.plus')
+            const plusBtn      = container.querySelector('.minus').nextElementSibling.nextElementSibling;
             const minusBtn     = container.querySelector('.minus');
             const addToCartBtn = container.querySelector('.add-to-cart');
 
-            // Загрузка ранее сохранённого значения
+
             const cart = loadCart();
             if (cart[productId] != null && cart[productId] > 0) {
                 qtyInput.value = cart[productId];
@@ -183,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 qtyInput.value = '';
             }
 
-            // Функция сохранения количества текущего товара
             function saveProductCount(count) {
                 const cartNow = loadCart();
                 if (count > 0) cartNow[productId] = count;
@@ -191,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 saveCart(cartNow);
             }
 
-            // События + и – сохраняют сразу
+
             plusBtn.addEventListener('click', () => {
                 let v = parseInt(qtyInput.value) || 0;
                 v++;
@@ -205,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 saveProductCount(v);
             });
 
-            // При ручном вводе тоже сохраняем
+
             qtyInput.addEventListener('input', () => {
                 let v = parseInt(qtyInput.value) || 0;
                 saveProductCount(v);
@@ -226,7 +213,7 @@ if (document.body.contains(document.getElementById('cartBody'))) {
       localStorage.setItem(CART_KEY, JSON.stringify(cart));
     }
   
-    // Данные товаров (та же логика, что и в main/script.js)
+
     const products = [];
     for (let i = 1; i <= 28; i++) {
       products.push({
@@ -250,7 +237,6 @@ if (document.body.contains(document.getElementById('cartBody'))) {
       if (!prod) return;
   
       const row = document.createElement('tr');
-      // Позиция
       row.innerHTML = `
         <td>${prod.name}</td>
         <td>${prod.price}</td>
@@ -296,11 +282,11 @@ if (document.body.contains(document.getElementById('cartBody'))) {
     });
   }
 
-// === PLACING ORDER PAGE ===
+// === placing order page ===
 if (document.getElementById('orderForm')) {
     const CART_KEY = 'cartCounts';
   
-    // Получаем текущий cart и считаем сумму
+
     function loadCart() {
       return JSON.parse(localStorage.getItem(CART_KEY) || '{}');
     }
@@ -308,10 +294,10 @@ if (document.getElementById('orderForm')) {
       localStorage.setItem(CART_KEY, '{}');
     }
   
-    // Обновляем итоговую сумму на странице
+
     function showTotal() {
       const cart = loadCart();
-      // Данные товаров (как в других скриптах)
+
       const products = [];
       for (let i = 1; i <= 28; i++) {
         products.push({
@@ -329,12 +315,12 @@ if (document.getElementById('orderForm')) {
   
     showTotal();
   
-    // Обработка отправки формы
+
     document.getElementById('orderForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const cart = loadCart();
       
-        // Получаем список товаров
+
         const products = [];
         for (let i = 1; i <= 28; i++) {
           products.push({
@@ -344,7 +330,7 @@ if (document.getElementById('orderForm')) {
           });
         }
       
-        // Список товаров в заказе
+
         const orderedItems = Object.entries(cart).map(([id, count]) => {
           const product = products.find(p => p.id === +id);
           return `${product?.name || 'Неизвестный товар'} — ${count} шт.`;
@@ -368,15 +354,15 @@ if (document.getElementById('orderForm')) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const phoneInput = document.getElementById('phone');
-    if (phoneInput) { // Убедитесь, что элемент существует
+    if (phoneInput) { 
         phoneInput.addEventListener('input', function () {
-            let digits = phoneInput.value.replace(/\D/g, '');  // Убираем все символы, кроме цифр
+            let digits = phoneInput.value.replace(/\D/g, '');  
 
             if (digits.length <= 11) {
                 if (digits.length > 0 && !digits.startsWith('7')) {
-                    digits = '7' + digits;  // Если не начинается с 7, добавляем 7
+                    digits = '7' + digits;  
                 }
-                const x = digits.slice(1); // Всё после 7
+                const x = digits.slice(1); 
                 let formatted = '+7';
                 if (x.length > 0) formatted += '-' + x.slice(0, 3);
                 if (x.length > 3) formatted += '-' + x.slice(3, 6);
@@ -397,25 +383,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (orderForm) {
         orderForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Останавливаем стандартное поведение формы
+            e.preventDefault(); 
 
-            // Генерация случайного номера заказа от 0 до 1000
             const orderNumber = Math.floor(Math.random() * 1001);
 
-            // Скрываем форму заказа
             orderForm.style.display = 'none';
 
-            // Отображаем подтверждение
             const confirmationDiv = document.getElementById('orderConfirmation');
             confirmationDiv.style.display = 'block';
             document.getElementById('orderNumber').textContent = `Номер заказа: ${orderNumber}`;
         });
 
-        // Обработчик кнопки "На главную"
         const backToMainBtn = document.getElementById('backToMainBtn');
         if (backToMainBtn) {
             backToMainBtn.addEventListener('click', function() {
-                window.location.href = 'main.html'; // Ссылка на главную страницу
+                window.location.href = 'main.html'; 
             });
         }
     }
